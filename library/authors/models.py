@@ -9,3 +9,11 @@ class Author(models.Model):
 
     def __str__(self):
         return  f'{self.last_name}-{self.first_name}'
+
+class Biographies(models.Model):
+    text = models.TextField(blank=True,null=True)
+    author = models.OneToOneField(Author,on_delete=models.CASCADE)
+
+class Book(models.Model):
+    name = models.CharField(max_length=50)
+    authors = models.ManyToManyField(Author)
